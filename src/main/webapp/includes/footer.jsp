@@ -7,4 +7,4 @@
   int currentYear = LocalDate.now().getYear();
 %>
 
-<p>&Copy; Alejandro Costa <%= currentYear %></p>
+<p>&copy; Alejandro Costa <%= currentYear %></p>
