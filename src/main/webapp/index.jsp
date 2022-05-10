@@ -15,10 +15,17 @@
   <p>Para fazer parte de nossa lista de e-mails, informe seu nome e endereço de e-mail abaixo.</p>
   
   <form>
-  
+    
+    <label for="first-name">Primeiro nome: </label>
     <input type="text" name="first-name" placeholder="Primeiro Nome">
+    
+    <label for="last-name">Último nome: </label>
     <input type="text" name="last-name" placeholder="Último Nome">
+    
+    <label for="email">E-mail: </label>
     <input type="email" name="email" placeholder="email@mail.com">
+    
+    <input type="submit" value="Registrar">
     
   </form>
 
