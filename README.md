@@ -4,8 +4,8 @@ Essa aplicação permite a um usuário salvar um determinado e-mail em uma lista
 
 ### Objetivos
 
-O principal objetivo do desenvolvimento dessa aplicação é praticar conhecimentos/técnicas associados com o desenvolvimento web utilizando JavaServer Pages (JSP) e Servlets.
-A utilização de um pool de conexões (ou connection pooling) foi o objetivo principal da construção dessa aplicação.
+O principal objetivo do desenvolvimento dessa aplicação é praticar conhecimentos/técnicas associados com o desenvolvimento web utilizando JavaServer Pages (JSP) e Servlets, além da conexão da aplicação com um banco de dados MySQL.
+A utilização de um pool de conexões (ou connection pooling) foi um dos objetivos principais da construção dessa aplicação.
 
 ### Pontos trabalhados durante o desenvolvimento
 
