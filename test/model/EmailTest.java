@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class EmailTest {
 
 	@Test
-	void isValidReturnsFalseWhenFirstNameIsNotProvided() {
+	void isValidReturnsFalseIfAnyFieldIsNotProvided() {
 		
 		Email email = new Email();
 		email.setLastName("Costa");

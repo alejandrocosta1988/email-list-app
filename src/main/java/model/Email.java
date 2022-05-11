@@ -20,17 +20,6 @@ public class Email implements Serializable {
 		this.emailAddress = emailAddress;
 	}
 	
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
-	}
 
 	public boolean isValid() {
 		if (isFirstNameValid() && isLastNameValid() && isEmailAddressValid()) {
@@ -60,5 +49,28 @@ public class Email implements Serializable {
 		return true;
 	}
 	
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
+	}
+
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+	public String getLastName() {
+		return this.lastName;
+	}
+
+	public String getEmailAddress() {
+		return this.emailAddress;
+	}
 
 }
