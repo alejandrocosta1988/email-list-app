@@ -33,13 +33,32 @@ public class Email implements Serializable {
 	}
 
 	public boolean isValid() {
-		if (this.firstName != null && this.lastName != null && this.emailAddress != null &&
-			!this.firstName.isEmpty() && !this.lastName.isEmpty() && !this.emailAddress.isEmpty()) {
-			
+		if (isFirstNameValid() && isLastNameValid() && isEmailAddressValid()) {
 			return true;
-			
 		}
 		return false;
 	}
+	
+	private boolean isFirstNameValid() {
+		if (this.firstName == null || this.firstName.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean isLastNameValid() {
+		if (this.lastName == null || this.lastName.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean isEmailAddressValid() {
+		if (this.emailAddress == null || this.emailAddress.isEmpty()) {
+			return false;
+		}
+		return true;
+	}
+	
 
 }
