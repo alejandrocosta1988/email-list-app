@@ -14,7 +14,8 @@
   
   <p>Para fazer parte de nossa lista de e-mails, informe seu nome e endereço de e-mail abaixo.</p>
   
-  <form>
+  <form action="emailList" method="post">
+    <input type="hidden" name="action" value="register">
     
     <label for="first-name">Primeiro nome: </label>
     <input type="text" name="first-name" placeholder="Primeiro Nome">
