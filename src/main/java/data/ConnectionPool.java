@@ -8,15 +8,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.dbcp2.BasicDataSource;
 
 public class ConnectionPool {
 
-	private static BasicDataSource dataSource;
+	private static ConnectionPool pool = null;
+	private static BasicDataSource dataSource = null;
 	
-	static {
+	private ConnectionPool() {
+		
 		try {
 			dataSource = new BasicDataSource();
 			Properties properties = new Properties();
@@ -39,20 +39,31 @@ public class ConnectionPool {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
-	public static DataSource getDataSource() {
-		return dataSource;
+	public static synchronized ConnectionPool getInstance() {
+		if (pool == null) {
+			pool = new ConnectionPool();
+		}
+		return pool;
 	}
 	
-	public static Connection getConnection() {
-		Connection connection = null;
+	public Connection getConnection() {
 		try {
-			connection = getDataSource().getConnection();
+			return dataSource.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public void freeConnection(Connection connection) {
+		try {
+			connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return connection;
 	}
 	
 }
