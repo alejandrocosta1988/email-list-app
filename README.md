@@ -28,5 +28,6 @@ O pool foi criado a partir de uma classe nomeada `ConnectionPool`.
 A construção do pool de conexões foi um desafio considerável. Foram necessárias várias tentativas diferentes para conseguir implementar. O aprendizado foi gratificante.
 
 #### `ConnectionPool`
-A classe utiliza um padrão Singleton para retornar sempre o mesmo pool de conexões. Foi definido um método para recuperar o pool de conexões e um método para conseguir uma conexão do pool.
-A definição do pool de conexões utilicou um `BasicDataSource`, que foi configurado para conter inicialmente 10 conexões, um número máximo de 100 conexões, um número máximo de 30 conexões ociosas, uma espera máxima de conexões pelo pool de 10 segundos, a remoção de conexões abandonadas que foram retiradas do pool para uso, bem como remoção de conexões abandonadas durante manutenção do pool e um tempo limite para remoção de conexões abandonadas de 60 segundos.
+A classe utiliza um padrão Singleton para retornar sempre o mesmo pool de conexões.
+A definição do pool de conexões utilizou um `BasicDataSource`, que foi configurado para conter inicialmente 10 conexões, um número máximo de 100 conexões, um número máximo de 30 conexões ociosas, uma espera máxima de conexões pelo pool de 10 segundos, a remoção de conexões abandonadas que foram retiradas do pool para uso, bem como remoção de conexões abandonadas durante manutenção do pool e um tempo limite para remoção de conexões abandonadas de 60 segundos.
+`ConnectionPool` oferece um método público para se retirar uma conexão do pool e utilizar, bem como um método público para fechar essa conexão e, assim, retorná-la para o pool de conexões.
