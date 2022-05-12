@@ -18,7 +18,15 @@ A utilização de um pool de conexões (ou connection pooling) foi um dos objeti
 
 ### Construindo um pool de conexões
 
-A construção do pool de conexões foi um desafio que começou com a criação de um arquivo context.xml. Esse arquivo foi armazenado no diretório META-INF da aplicação web. Dentro do arquivo context.xml, vários detalhes de configuração foram realizados. A começar por todas as informações associadas ao banco de dados, como url, usuário e senha, além de nome do driver e nome do banco de dados.
-Além das informações diretamente associadas ao banco de dados, também foram ajustadas configurações associadas ao pool de conexões. Por exemplo, número máximo de conexões ativas, remoção de conexões abandonadas (conexões cujos resultados ou declarações, por exemplo, não foram fechados), tempo necessário para realizar a remoção de uma conexão abandonada, dentre vários outros parâmetros.
-Após criação do context.xml, foi necessário a criação de uma classe para definir o pool de conexões propriamente dito (`ConnectionPool`). Essa classe foi criada seguindo um padrão Singleton, o que significa que uma única instância dela será criada e sempre será retornada.
-A partir da classe `ConnectionPool`, se torna possível retirar uma conexão do pool, utiizá-la e, depois, devolvê-la para o pool de conexões. 
+Para construção do pool de conexões foi necessário adicionar as seguintes dependências:
+`commons-dbcp2-2.9.0.jar`
+`commons-pool2-2.11.0.jar`
+`commons-logging-1.2.jar`
+
+O pool foi criado a partir de uma classe nomeada `ConnectionPool`.
+
+A construção do pool de conexões foi um desafio considerável. Foram necessárias várias tentativas diferentes para conseguir implementar. O aprendizado foi gratificante.
+
+#### `ConnectionPool`
+A classe utiliza um padrão Singleton para retornar sempre o mesmo pool de conexões. Foi definido um método para recuperar o pool de conexões e um método para conseguir uma conexão do pool.
+A definição do pool de conexões utilicou um `BasicDataSource`, que foi configurado para conter inicialmente 10 conexões, um número máximo de 100 conexões, um número máximo de 30 conexões ociosas, uma espera máxima de conexões pelo pool de 10 segundos, a remoção de conexões abandonadas que foram retiradas do pool para uso, bem como remoção de conexões abandonadas durante manutenção do pool e um tempo limite para remoção de conexões abandonadas de 60 segundos.
