@@ -18,6 +18,8 @@
     <li>${email.emailAddress}</li>
   </ul>
   
+  <a href="emailList?action=join">Retornar à página de cadastro</a>
+  
   <footer>
     <jsp:include page="includes/footer.jsp"></jsp:include>
   </footer>
