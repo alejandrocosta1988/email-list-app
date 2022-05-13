@@ -1,6 +1,7 @@
 package data;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class DBUtil {
@@ -13,4 +14,11 @@ public class DBUtil {
 		}
 	}
 	
+	public static void closeResultSet(ResultSet resultSet) {
+		try {
+			resultSet.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
