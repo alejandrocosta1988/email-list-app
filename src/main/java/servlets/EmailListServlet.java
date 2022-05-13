@@ -71,6 +71,8 @@ public class EmailListServlet extends HttpServlet {
 			
 		} else if (action.equals("see-registered")) {
 			
+			url = "/emails.jsp";
+			
 		}
 		
 		request.setAttribute("message", message);
