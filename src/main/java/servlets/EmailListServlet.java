@@ -36,16 +36,26 @@ public class EmailListServlet extends HttpServlet {
 			
 		} else if (action.equals("register")) {
 		
+			String message = "";
 			String firstName = request.getParameter("first-name");
 			String lastName = request.getParameter("last-name");
 			String emailAddress = request.getParameter("email");
 			
 			Email email = new Email(firstName, lastName, emailAddress);
 			
-			EmailDB.insertEmail(email);
+			if (EmailDB.emailExistsInDataBase(email)) {
+				
+				message = "O e-mail informado já está registrado em nossa lista.";
+				url = "/index.jsp";
+				
+			} else {
+				
+				EmailDB.insertEmail(email);
+				url = "/registered.jsp";
+				
+			}
 			
-			url = "/registered.jsp";
-			
+			request.setAttribute("message", message);
 			request.setAttribute("email", email);
 			getServletContext().getRequestDispatcher(url).forward(request, response);
 			
