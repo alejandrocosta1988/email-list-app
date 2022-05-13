@@ -29,6 +29,8 @@
     <input type="submit" value="Registrar">
     
   </form>
+  
+  <p><i>${message}</i></p>
 
   <footer>
     <jsp:include page="includes/footer.jsp"></jsp:include>
