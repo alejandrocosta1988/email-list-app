@@ -11,17 +11,19 @@ A utilização de um pool de conexões (ou connection pooling) foi um dos objeti
 
 - Desenvolvimento backend utilizando JSP e Servlets;
 - Utilização de EL (Expression Language);
+- Utilização de JSTL;
 - Arquitetura MVC;
 - Conexão com banco de dados MySQL utilizando driver Connector/J;
 - Conexão com banco de dados utilizando connection pooling;
-- Testes unitários com JUnit;
+- Testes unitários com JUnit (ainda não implementei testes associados às operações com o banco de dados. Ainda não estudei como realizar esses testes de forma eficiente);
 
 ### Construindo um pool de conexões
 
 Para construção do pool de conexões foi necessário adicionar as seguintes dependências:
-`commons-dbcp2-2.9.0.jar`
-`commons-pool2-2.11.0.jar`
-`commons-logging-1.2.jar`
+
+- `commons-dbcp2-2.9.0.jar`
+- `commons-pool2-2.11.0.jar`
+- `commons-logging-1.2.jar`
 
 O pool foi criado a partir de uma classe nomeada `ConnectionPool`.
 
