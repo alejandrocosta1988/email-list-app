@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 
+import data.EmailDB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.Email;
 
 public class EmailListServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
     public EmailListServlet() {
@@ -39,6 +41,13 @@ public class EmailListServlet extends HttpServlet {
 			String emailAddress = request.getParameter("email");
 			
 			Email email = new Email(firstName, lastName, emailAddress);
+			
+			EmailDB.insertEmail(email);
+			
+			url = "/registered.jsp";
+			
+			request.setAttribute("email", email);
+			getServletContext().getRequestDispatcher(url).forward(request, response);
 			
 		}
 		
