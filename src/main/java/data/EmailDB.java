@@ -35,6 +35,11 @@ public class EmailDB {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			
+			DBUtil.closeResultSet(resultSet);
+			pool.freeConnection(connection);
+			
 		}
 		
 		return emails;
