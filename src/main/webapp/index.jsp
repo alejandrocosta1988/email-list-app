@@ -18,13 +18,13 @@
     <input type="hidden" name="action" value="register">
     
     <label for="first-name">Primeiro nome: </label>
-    <input type="text" name="first-name" placeholder="Primeiro Nome">
+    <input type="text" name="first-name" placeholder="Primeiro Nome" required>
     
     <label for="last-name">Último nome: </label>
-    <input type="text" name="last-name" placeholder="Último Nome">
+    <input type="text" name="last-name" placeholder="Último Nome" required>
     
     <label for="email">E-mail: </label>
-    <input type="email" name="email" placeholder="email@mail.com">
+    <input type="email" name="email" placeholder="email@mail.com" required>
     
     <input type="submit" value="Registrar">
     
