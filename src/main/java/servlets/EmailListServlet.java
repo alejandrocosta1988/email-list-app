@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import data.EmailDB;
 import jakarta.servlet.ServletException;
@@ -71,6 +72,8 @@ public class EmailListServlet extends HttpServlet {
 			
 		} else if (action.equals("see-registered")) {
 			
+			List<Email> emails = EmailDB.getEmailsFromDatabase();
+			request.setAttribute("emails", emails);
 			url = "/emails.jsp";
 			
 		}
