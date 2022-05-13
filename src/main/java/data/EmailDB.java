@@ -63,11 +63,7 @@ public class EmailDB {
 			
 		} finally {
 
-			try {
-				resultSet.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			DBUtil.closeResultSet(resultSet);
 			DBUtil.closePreparedStatement(preparedStatement);
 			pool.freeConnection(connection);
 			
