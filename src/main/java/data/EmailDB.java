@@ -28,7 +28,7 @@ public class EmailDB {
 			
 			while (resultSet.next()) {
 				
-				Email email = new Email(resultSet.getString("firstName"), resultSet.getString("lastName"), resultSet.getString("email"));
+				Email email = new Email(resultSet.getString("first_name"), resultSet.getString("last_name"), resultSet.getString("email"));
 				emails.add(email);
 				
 			}
