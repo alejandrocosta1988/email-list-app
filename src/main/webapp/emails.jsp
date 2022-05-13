@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -20,11 +23,17 @@
     </thead>
     
     <tbody>
-      <tr>
-        <td>Primeiro</td>
-        <td>Último</td>
-        <td>email@mail.com</td>
-      </tr>
+      
+      <c:forEach var="email" items="${emails}">
+      
+        <tr>
+          <td><c:out value="${email.getFirstName()}"/></td>
+          <td><c:out value="${email.getLastName()}"/></td>
+          <td><c:out value="${email.getEmailAddress()}"/></td>
+        </tr>
+      
+      </c:forEach>
+      
     </tbody>
   
   </table>
