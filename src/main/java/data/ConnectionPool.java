@@ -17,29 +17,20 @@ public class ConnectionPool {
 	
 	private ConnectionPool() {
 		
-		try {
-			dataSource = new BasicDataSource();
-			Properties properties = new Properties();
-			InputStream inputStream = new FileInputStream("src/db.properties");
-			properties.load(inputStream);
-			dataSource.setDriverClassName(properties.getProperty("DRIVER_CLASS"));
-			dataSource.setUrl(properties.getProperty("DB_CONNECTION_URL"));
-			dataSource.setUsername(properties.getProperty("DB_USER"));
-			dataSource.setPassword(properties.getProperty("DB_PWD"));
-			dataSource.setInitialSize(10);
-			dataSource.setMaxTotal(100);
-			dataSource.setMaxIdle(30);
-			dataSource.setMaxWaitMillis(10000);
-			dataSource.setRemoveAbandonedOnBorrow(true);
-			dataSource.setRemoveAbandonedOnMaintenance(true);
-			dataSource.setRemoveAbandonedTimeout(60);
-			dataSource.setLogAbandoned(true);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		dataSource = new BasicDataSource();
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/onlineSQL?autoReconnect=true");
+		dataSource.setUsername("root");
+		dataSource.setPassword("");
+		dataSource.setInitialSize(10);
+		dataSource.setMaxTotal(100);
+		dataSource.setMaxIdle(30);
+		dataSource.setMaxWaitMillis(10000);
+		dataSource.setRemoveAbandonedOnBorrow(true);
+		dataSource.setRemoveAbandonedOnMaintenance(true);
+		dataSource.setRemoveAbandonedTimeout(60);
+		dataSource.setLogAbandoned(true);
+	
 	}
 	
 	public static synchronized ConnectionPool getInstance() {
