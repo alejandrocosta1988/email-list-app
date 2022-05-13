@@ -18,16 +18,21 @@
     <input type="hidden" name="action" value="register">
     
     <label for="first-name">Primeiro nome: </label>
-    <input type="text" name="first-name" placeholder="Primeiro Nome" required>
+    <input type="text" name="first-name" placeholder="Primeiro Nome" value="${email.firstName}" required>
     
     <label for="last-name">Último nome: </label>
-    <input type="text" name="last-name" placeholder="Último Nome" required>
+    <input type="text" name="last-name" placeholder="Último Nome" value="${email.lastName}" required>
     
     <label for="email">E-mail: </label>
-    <input type="email" name="email" placeholder="email@mail.com" required>
+    <input type="email" name="email" placeholder="email@mail.com" value="${email.emailAddress}" required>
     
     <input type="submit" value="Registrar">
     
+  </form>
+  
+  <form action="emailList" method="post">
+    <input type="hidden" name="action" value="see-registered">
+    <input type="submit" value="Ver todos os e-mails">
   </form>
   
   <p><i>${message}</i></p>
