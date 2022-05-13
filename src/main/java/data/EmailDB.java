@@ -4,10 +4,41 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Email;
 
 public class EmailDB {
+	
+	public static List<Email> getEmailsFromDatabase() {
+		
+		List<Email> emails = new ArrayList<>();
+		ConnectionPool pool = ConnectionPool.getInstance();
+		Connection connection = pool.getConnection();
+		ResultSet resultSet = null;
+		
+		String query = "SELECT * FROM table_users";
+		
+		try {
+			
+			Statement statement = connection.createStatement();
+			resultSet = statement.executeQuery(query);
+			
+			while (resultSet.next()) {
+				
+				Email email = new Email(resultSet.getString("firstName"), resultSet.getString("lastName"), resultSet.getString("email"));
+				emails.add(email);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return emails;
+	}
 
 	public static int insertEmail(Email email) {
 		
