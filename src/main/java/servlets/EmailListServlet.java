@@ -18,7 +18,20 @@ public class EmailListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String action = request.getParameter("action");
+		String url = "/index.jsp";
+		
+		if (action == null || action.isEmpty()) {
+			action = "join";
+		}
+		
+		if (action == "join") {
+			url = "/index.jsp";
+		}
+		
+		getServletContext().getRequestDispatcher(url).forward(request, response);
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
