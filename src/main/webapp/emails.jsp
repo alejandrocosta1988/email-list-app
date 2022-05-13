@@ -28,6 +28,8 @@
     </tbody>
   
   </table>
+  
+  <a href="emailList?action=join">Retornar a página de cadastro</a>
 
   <footer>
     <jsp:include page="includes/footer.jsp"></jsp:include>
