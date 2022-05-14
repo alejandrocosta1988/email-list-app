@@ -20,6 +20,7 @@
       <th>Primeiro nome</th>
       <th>Último nome</th>
       <th>E-mail</th>
+      <th>Excluir</th>
     </thead>
     
     <tbody>
@@ -30,6 +31,12 @@
           <td><c:out value="${email.getFirstName()}"/></td>
           <td><c:out value="${email.getLastName()}"/></td>
           <td><c:out value="${email.getEmailAddress()}"/></td>
+          <td>
+            <form action="emailList" method="post">
+              <input type="hidden" name="action" value="delete-email">
+              <input type="submit" value="&#128465;" class="delete">
+            </form>
+          </td>
         </tr>
       
       </c:forEach>
