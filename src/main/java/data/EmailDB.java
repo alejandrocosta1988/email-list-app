@@ -14,42 +14,44 @@ public class EmailDB {
 	
 	public static void deleteEmail(String emailAddress) {
 		
-		Integer emailId = null;
 		ConnectionPool pool = ConnectionPool.getInstance();
 		Connection connection = pool.getConnection();
-		ResultSet resultSet = null;
-		PreparedStatement selectPreparedStatement = null;
-		PreparedStatement deletePreparedStatement = null;
+		PreparedStatement preparedStatement = null;
 		
-		String query = "SELECT * FROM table_users WHERE email = ?";
-		String deleteQuery = "DELETE FROM table_users WHERE user_id = ?";
+		String query = "DELETE FROM table_users WHERE user_id = ?";
 		
 		try {
 			
-			selectPreparedStatement = connection.prepareStatement(query);
-			selectPreparedStatement.setString(1, emailAddress);
-			resultSet = selectPreparedStatement.executeQuery();
-			if (resultSet.next()) {
-				emailId = resultSet.getInt("user_id");
-			}
-			
-			deletePreparedStatement = connection.prepareStatement(deleteQuery);
-			deletePreparedStatement.setInt(1, emailId);
-			deletePreparedStatement.executeUpdate();
+			Integer emailId = getEmailId(connection, emailAddress);
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, emailId);
+			preparedStatement.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			
-			DBUtil.closePreparedStatement(selectPreparedStatement);
-			DBUtil.closePreparedStatement(deletePreparedStatement);
-			DBUtil.closeResultSet(resultSet);
+			DBUtil.closePreparedStatement(preparedStatement);
 			pool.freeConnection(connection);
 			
 		}
 		
 	}
 	
+	private static int getEmailId(Connection connection, String emailAddress) throws SQLException {
+		
+		Integer emailId = null;
+		PreparedStatement preparedStatement = connection.prepareStatement("SELECT user_id FROM table_users WHERE email = ?");
+		preparedStatement.setString(1, emailAddress);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+			 emailId = resultSet.getInt("user_id");
+		}
+		DBUtil.closeResultSet(resultSet);
+		DBUtil.closePreparedStatement(preparedStatement);
+		return emailId;
+		
+	}
 	
 	public static List<Email> getEmailsFromDatabase() {
 		
