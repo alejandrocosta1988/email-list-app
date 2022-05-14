@@ -14,6 +14,8 @@
 
   <h1>E-mails registrados</h1>
   
+  <p>${message}</p>
+  
   <table>
     
     <thead>
@@ -34,6 +36,7 @@
           <td>
             <form action="emailList" method="post">
               <input type="hidden" name="action" value="delete-email">
+              <input type="hidden" name="email-address" value="${email.getEmailAddress()}">
               <input type="submit" value="&#128465;" class="delete">
             </form>
           </td>

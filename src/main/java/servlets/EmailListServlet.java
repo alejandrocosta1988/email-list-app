@@ -76,6 +76,16 @@ public class EmailListServlet extends HttpServlet {
 			request.setAttribute("emails", emails);
 			url = "/emails.jsp";
 			
+		} else if (action.equals("delete-email")) {
+			
+			String emailAddress = request.getParameter("email-address");
+			EmailDB.deleteEmail(emailAddress);
+			message = "Registro deletado com sucesso.";
+			List<Email> emails = EmailDB.getEmailsFromDatabase();
+			request.setAttribute("emails", emails);
+			
+			url = "/emails.jsp";
+			
 		}
 		
 		request.setAttribute("message", message);
