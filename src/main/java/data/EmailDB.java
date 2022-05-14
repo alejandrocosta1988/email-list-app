@@ -12,6 +12,45 @@ import model.Email;
 
 public class EmailDB {
 	
+	public static void deleteEmail(String emailAddress) {
+		
+		Integer emailId = null;
+		ConnectionPool pool = ConnectionPool.getInstance();
+		Connection connection = pool.getConnection();
+		ResultSet resultSet = null;
+		PreparedStatement selectPreparedStatement = null;
+		PreparedStatement deletePreparedStatement = null;
+		
+		String query = "SELECT * FROM table_users WHERE email = ?";
+		String deleteQuery = "DELETE FROM table_users WHERE id = ?";
+		
+		try {
+			
+			selectPreparedStatement = connection.prepareStatement(query);
+			selectPreparedStatement.setString(1, emailAddress);
+			resultSet = selectPreparedStatement.executeQuery();
+			if (resultSet.next()) {
+				emailId = resultSet.getInt("user_id");
+			}
+			
+			deletePreparedStatement = connection.prepareStatement(deleteQuery);
+			deletePreparedStatement.setInt(1, emailId);
+			deletePreparedStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			
+			DBUtil.closePreparedStatement(selectPreparedStatement);
+			DBUtil.closePreparedStatement(deletePreparedStatement);
+			DBUtil.closeResultSet(resultSet);
+			pool.freeConnection(connection);
+			
+		}
+		
+	}
+	
+	
 	public static List<Email> getEmailsFromDatabase() {
 		
 		List<Email> emails = new ArrayList<>();
