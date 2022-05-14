@@ -22,7 +22,7 @@ public class EmailDB {
 		PreparedStatement deletePreparedStatement = null;
 		
 		String query = "SELECT * FROM table_users WHERE email = ?";
-		String deleteQuery = "DELETE FROM table_users WHERE id = ?";
+		String deleteQuery = "DELETE FROM table_users WHERE user_id = ?";
 		
 		try {
 			
