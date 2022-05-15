@@ -86,6 +86,27 @@ public class EmailListServlet extends HttpServlet {
 			
 			url = "/emails.jsp";
 			
+		} else if (action.equals("update-email")) {
+			
+			String emailAddress = request.getParameter("email-address");
+			Email registeredEmail = EmailDB.selectEmail(emailAddress);
+			String origin = "update-email";
+			request.setAttribute("email", registeredEmail);
+			request.setAttribute("origin", origin);
+			url = "/index.jsp";
+			
+		} else if (action.equals("update")) {
+			
+			String firstName = request.getParameter("first-name");
+			String lastName = request.getParameter("last-name");
+			String emailAddress = request.getParameter("email");
+			String registeredEmail = request.getParameter("registered-email");
+			Email email = new Email(firstName, lastName, emailAddress);
+			
+			EmailDB.updateEmail(registeredEmail, email);
+			url = "/index.jsp";
+			message="Registro de e-mail atualizado com sucesso.";
+			
 		}
 		
 		request.setAttribute("message", message);
