@@ -12,6 +12,64 @@ import model.Email;
 
 public class EmailDB {
 	
+	public static Email selectEmail(String emailAddress) {
+	
+		ConnectionPool pool = ConnectionPool.getInstance();
+		Connection connection = pool.getConnection();
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		Email registeredEmail = new Email();
+		String query = "SELECT * FROM table_users WHERE email = ?";
+		
+		try {
+			
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, emailAddress);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				registeredEmail.setFirstName(resultSet.getString("first_name"));
+				registeredEmail.setLastName(resultSet.getString("last_name"));
+				registeredEmail.setEmailAddress(resultSet.getString("email"));
+			}
+			
+			return registeredEmail;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return registeredEmail;
+		} finally {
+			DBUtil.closePreparedStatement(preparedStatement);
+			pool.freeConnection(connection);
+		}
+		
+	}
+	
+	public static void updateEmail(String emailAddress, Email email) {
+		
+		ConnectionPool pool = ConnectionPool.getInstance();
+		Connection connection = pool.getConnection();
+		PreparedStatement preparedStatement = null;
+		
+		String query = "UPDATE table_users SET first_name = ?, last_name = ?, email = ? WHERE user_id = ?";
+		
+		try {
+			
+			int emailId = getEmailId(connection, emailAddress);
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, email.getFirstName());
+			preparedStatement.setString(2, email.getLastName());
+			preparedStatement.setString(3, email.getEmailAddress());
+			preparedStatement.setInt(4, emailId);
+			preparedStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closePreparedStatement(preparedStatement);
+			pool.freeConnection(connection);
+		}
+	}
+	
 	public static void deleteEmail(String emailAddress) {
 		
 		ConnectionPool pool = ConnectionPool.getInstance();
