@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -15,6 +18,10 @@
   <p>Para fazer parte de nossa lista de e-mails, informe seu nome e endereço de e-mail abaixo.</p>
   
   <form action="emailList" method="post">
+    <c:if test="${origin == 'update-email'}">
+      <input type="hidden" name="action" value="update">
+      <input type="hidden" name="registered-email" value="${email.emailAddress}">
+    </c:if>
     <input type="hidden" name="action" value="register">
     
     <label for="first-name">Primeiro nome: </label>
