@@ -23,6 +23,7 @@
       <th>Último nome</th>
       <th>E-mail</th>
       <th>Excluir</th>
+      <th>Editar</th>
     </thead>
     
     <tbody>
@@ -37,7 +38,14 @@
             <form action="emailList" method="post">
               <input type="hidden" name="action" value="delete-email">
               <input type="hidden" name="email-address" value="${email.getEmailAddress()}">
-              <input type="submit" value="&#128465;" class="delete">
+              <input type="submit" value="&#128465;" class=delete>
+            </form>
+          </td>
+          <td>
+            <form action="emailList" method="post">
+              <input type="hidden" name="action" value="update-email">
+              <input type="hidden" name="email-address" value="${email.getEmailAddress()}">
+              <input type="submit" value="&#9998;" class="delete">
             </form>
           </td>
         </tr>
